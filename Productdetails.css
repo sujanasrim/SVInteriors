@@ -1,0 +1,37 @@
+.section-container {
+    padding: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    color: black;
+    margin-bottom: 15px;
+}
+
+h3 {
+    font-size: 20px;
+    color: black;
+    margin-bottom: 10px;
+}
+
+
+
+.product-details-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.product-details-table th, .product-details-table td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: centre;
+    color: black;
+}
+
+.product-details-table th {
+    background-color: grey;
+    color: White;
+}
+
+
