@@ -58,12 +58,13 @@ section {
 /* Navigation bar styling */
 
 .service-container {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: -8px;
+    margin-bottom: 50px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+    text-align: center;
 }
 .image-container {
     margin-top: 200px;
