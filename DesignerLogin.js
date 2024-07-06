@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from './firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import './ClientL.css';
 
-const ClientLogin = () => {
+const DesignerLogin = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -16,12 +15,9 @@ const ClientLogin = () => {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
             console.log('User signed in:', user.uid);
-            
-            // Optionally store user data in localStorage or session
-            localStorage.setItem('userId', user.uid);
 
-            // Navigate to services or client specific page
-            navigate('/services');
+            // Navigate to designer dashboard or profile page
+            navigate('/Designer');
         } catch (error) {
             setError(error.message);
         }
@@ -29,7 +25,7 @@ const ClientLogin = () => {
 
     return (
         <div className='clientlogin-container'>
-            <h1>Client Sign In</h1>
+            <h1>Designer Sign In</h1>
             <form onSubmit={handleSignIn}>
                 <div className='form-group'>
                     <label>Email</label>
@@ -60,4 +56,4 @@ const ClientLogin = () => {
     );
 };
 
-export default ClientLogin;
+export default DesignerLogin;

@@ -1,38 +1,61 @@
-/* src/Cart.css */
-.cart-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
 .cart {
-    background: white;
+    background: coral;
     padding: 20px;
     border-radius: 10px;
-    width: 300px;
-    max-height: 80vh;
-    overflow-y: auto;
+    width: 90%; /* Adjust width as needed */
+    max-width: 800px; /* Set a maximum width if necessary */
+    overflow: hidden; /* Hide overflow content */
     position: relative;
+    margin: 0 auto; /* Center horizontally */
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    margin-bottom: 50px;
 }
 
-.close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
+.cart-item {
+    width: 100%; /* Take full width */
+    margin: 10px 0; /* Vertical spacing */
+    text-align: center; /* Center text */
+    display: flex;
+    flex-direction: column; /* Stack item details vertically */
+    align-items: center; /* Center item details horizontally */
+    border: 1px solid #ddd; /* Optional: Add a border for item separation */
+    padding: 10px; /* Optional: Add padding around each item */
+    border-radius: 8px; /* Optional: Rounded corners */
 }
 
 .cart-item-img {
-    width: 100%;
-    margin-bottom: 10px;
+    width: 100px; /* Adjust as needed */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensure the image covers the container without stretching */
+    margin-bottom: 10px; /* Optional: Space between image and text */
+}
+
+.item-details {
+    margin-bottom: 10px; /* Space between details and buttons */
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Add space between buttons */
+}
+
+.accept-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.remove-button {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
 }

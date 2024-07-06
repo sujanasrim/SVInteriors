@@ -4,7 +4,7 @@ import { auth } from "./firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import './ClientL.css';
 
-const ClientSignup = () => {
+const DesignerSignup = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -63,9 +63,9 @@ const ClientSignup = () => {
                 <button type='submit' className='btn btn-primary btn-block'>Sign Up</button>
             </form>
             {error && <p className='error'>{error}</p>}
-           <button onClick={() => navigate("/ClientLogin")} className='link-btn'>Already have an account? Sign In Here</button>
+           <button onClick={() => navigate("/DesignerLogin")} className='link-btn'>Already have an account? Sign In Here</button>
         </div>
     );
 };
 
-export default ClientSignup;
+export default DesignerSignup;

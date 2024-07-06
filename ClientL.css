@@ -1,0 +1,128 @@
+/* Updated CSS */
+
+body {
+    background-color: coral; /* Coral background color */
+    margin: 100;
+    padding-top: 200px; /* Ensure content starts below fixed navbar */
+    display: flex;
+}
+
+
+h1 {
+    font-size: 36px;
+    margin-top: 40px; /* Adjust top margin for spacing */
+    color: #333;
+}
+
+.welcome-container {
+    margin-bottom: 20px;
+    padding: 10px; /* Adding padding to the welcome section */
+    border-radius: 8px; /* Adding border-radius to match the container */
+}
+
+.welcome-message {
+    font-size: 20px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.images-container {
+    width: 80%; /* Adjust width as needed */
+    display: flex;
+    justify-content: center; /* Center align the images horizontally */
+    align-items: center; /* Center align the images vertically */
+    flex-wrap: wrap; /* Allow images to wrap to the next line if necessary */
+    margin: 20px auto; /* Center and add margin */
+}
+
+.image {
+    width: 30%; /* Adjust width as needed */
+    height: auto;
+    margin: 10px; /* Add margin around each image */
+    border-radius: 8px;
+    background-color: lightcoral; /* Light coral background color for images */
+}
+
+.logo {
+    width: 40%;
+    height: 30%;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Allow items to wrap */
+    width: 100%;
+    max-width: 800px; /* Adjust max-width as needed */
+    margin-top: 84px; /* Center and add margin */
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 300px; /* Adjust max-width as needed */
+}
+
+.buttons button {
+    width: 100%; /* Adjust button width for better fit */
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.buttons button:first-child {
+    margin-right: 10px; /* Add margin between buttons */
+}
+
+.buttons button:hover {
+    background-color: #0056b3;
+}
+
+.cusacc-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 5px;
+    background-color: coral;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 84.95px;
+}
+
+.clientlogin-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 5px;
+    background-color: coral;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: -50px;
+}
+
+.clientsignup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1500px;
+    padding: 50px;
+    background-color: coral;
+    text-align: center;
+    margin-top: -100px;
+}
+

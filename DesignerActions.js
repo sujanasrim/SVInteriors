@@ -15,7 +15,7 @@ const DesignerActions = () => {
   };
 
   return (
-    <div className="container">
+    <div className="cusacc-container">
       <h2>Designer Actions</h2>
       <div className="buttons-container">
         <button onClick={handleDesignerLogin}>Designer Login</button>

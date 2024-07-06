@@ -16,7 +16,7 @@ const CustomerActions = () => {
   };
 
   return (
-    <div className="container">
+    <div className="cusacc-container">
       <Navbar />
       <h2>Customer Actions</h2>    
       <div className="buttons-container">

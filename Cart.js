@@ -1,44 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import { ref, onValue, remove, off } from 'firebase/database';
-import { database } from './firebase';
+import { useNavigate } from 'react-router-dom';
 import './Cart.css';
 
-const Cart = () => {
-    const [cartItems, setCartItems] = useState([]);
+const Cart = ({ cartItems, removeFromCart, onMakePayment }) => {
+    const navigate = useNavigate();
+    const [acceptedItems, setAcceptedItems] = useState([]);
+    const [allAccepted, setAllAccepted] = useState(false);
 
     useEffect(() => {
-        const cartRef = ref(database, 'cart');
+        if (acceptedItems.length === cartItems.length && cartItems.length > 0) {
+            setAllAccepted(true);
+        } else {
+            setAllAccepted(false);
+        }
+    }, [acceptedItems, cartItems]);
 
-        const handleData = (snapshot) => {
-            const cartData = snapshot.val();
-            if (cartData) {
-                const items = Object.keys(cartData).map(key => ({
-                    id: key,
-                    ...cartData[key]
-                }));
-                setCartItems(items);
-            } else {
-                setCartItems([]);
-            }
-        };
+    const handleImageError = (e) => {
+        e.target.src = 'default-image.png';
+    };
 
-        onValue(cartRef, handleData);
+    const handleAcceptQuote = (item) => {
+        console.log(`Accept quote for item with ID ${item.id}`);
+        setAcceptedItems((prevAcceptedItems) => [...prevAcceptedItems, item]);
+    };
 
-        // Clean up listener
-        return () => {
-            off(cartRef, handleData);
-        };
-    }, []);
-
-    const handleRemoveFromCart = (itemId) => {
-        const itemRef = ref(database, `cart/${itemId}`);
-        remove(itemRef)
-            .then(() => {
-                setCartItems(prevItems => prevItems.filter(item => item.id !== itemId));
-            })
-            .catch(error => {
-                console.error('Error removing item from cart:', error);
-            });
+    const handleProceedToPayment = () => {
+        onMakePayment(); // Reset cart items count in parent component
+        navigate('/Payment', { state: { acceptedItems } });
+        setAcceptedItems([]);
     };
 
     return (
@@ -47,18 +36,44 @@ const Cart = () => {
             {cartItems.length === 0 ? (
                 <p>Your cart is empty.</p>
             ) : (
-                <ul className="cart-items">
-                    {cartItems.map((item) => (
-                        <li key={item.id} className="cart-item">
-                            <img src={item.imageUrl} alt={item.name} className="cart-item-img" />
-                            <p>Status: {item.status}</p>
-                            {item.status === 'quoted' && <p>Quote: ${item.quote}</p>}
-                            <button className="remove-button" onClick={() => handleRemoveFromCart(item.id)}>
-                                Remove
-                            </button>
-                        </li>
-                    ))}
-                </ul>
+                <>
+                    <ul className="cart-items">
+                        {cartItems.map((item) => (
+                            <li key={item.id} className="cart-item">
+                                <img 
+                                    src={item.imageUrl} 
+                                    alt={item.name} 
+                                    className="cart-item-img" 
+                                    onError={handleImageError}
+                                />
+                                <div className="item-details">
+                                    <p>Name: {item.projectName}</p>
+                                    <p>Status: {item.status}</p>
+                                    {item.status === 'quoted' && (
+                                        <p>Budget: ${item.projectBudget}</p>
+                                    )}
+                                </div>
+                                <div className="button-group">
+                                    <button 
+                                        className="accept-button" 
+                                        onClick={() => handleAcceptQuote(item)}
+                                        disabled={acceptedItems.some((acceptedItem) => acceptedItem.id === item.id)}
+                                    >
+                                        {acceptedItems.some((acceptedItem) => acceptedItem.id === item.id) ? 'Accepted' : 'Accept'}
+                                    </button>
+                                    <button className="remove-button" onClick={() => removeFromCart(item.id)}>
+                                        Remove
+                                    </button>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                    {allAccepted && (
+                        <button className="proceed-button" onClick={handleProceedToPayment}>
+                            Make Payment
+                        </button>
+                    )}
+                </>
             )}
         </div>
     );
