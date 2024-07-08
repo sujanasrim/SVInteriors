@@ -1,0 +1,39 @@
+.quotation {
+    background: coral; /* Changed background color to coral */
+    padding: 20px;
+    border-radius: 10px;
+    width: 1000%;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.quotation h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.quotation-list {
+    list-style: none;
+    padding: 0;
+}
+
+.quotation-item {
+    background: rgb(244, 240, 240);
+    margin-bottom: 10px;
+    padding: 0;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.quotation-item p {
+    margin: 5px 0;
+}
+
+.quoted-item-img {
+    max-width: 100%; /* Adjust the maximum width */
+    height: 200px; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensure the image covers the container without stretching */
+    margin-bottom: 10px;
+}
