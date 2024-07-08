@@ -8,17 +8,28 @@ const Contact = () => {
         message: ''
     };
 
-    const [formData, setFormData] = useState(initialFormData);
+    // Retrieve showMessage state from localStorage or default to false
     const [showMessage, setShowMessage] = useState(
         localStorage.getItem('showMessage') === 'true'
     );
 
+    // Retrieve formData state from localStorage or default to initialFormData
+    const [formData, setFormData] = useState(() => {
+        const savedFormData = localStorage.getItem('formData');
+        return savedFormData ? JSON.parse(savedFormData) : initialFormData;
+    });
+
     const { fullName, email, message } = formData;
 
+    // Store showMessage state in localStorage whenever it changes
     useEffect(() => {
-        // When showMessage state changes, update localStorage
         localStorage.setItem('showMessage', showMessage);
     }, [showMessage]);
+
+    // Store formData state in localStorage whenever it changes
+    useEffect(() => {
+        localStorage.setItem('formData', JSON.stringify(formData));
+    }, [formData]);
 
     const handleChange = (e) => {
         setFormData({
@@ -44,6 +55,14 @@ const Contact = () => {
             setShowMessage(false);
         }, 3000);
     };
+
+    // Reset form data and hide message on component unmount
+    useEffect(() => {
+        return () => {
+            localStorage.removeItem('formData');
+            localStorage.removeItem('showMessage');
+        };
+    }, []);
 
     return (
         <div className="contact-container">

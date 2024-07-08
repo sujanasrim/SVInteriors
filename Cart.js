@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Cart.css';
 
-const Cart = ({ cartItems, removeFromCart, onMakePayment }) => {
+const Cart = ({ cartItems, removeFromCart }) => {
     const navigate = useNavigate();
     const [acceptedItems, setAcceptedItems] = useState([]);
     const [allAccepted, setAllAccepted] = useState(false);
@@ -25,7 +25,6 @@ const Cart = ({ cartItems, removeFromCart, onMakePayment }) => {
     };
 
     const handleProceedToPayment = () => {
-        onMakePayment(); // Reset cart items count in parent component
         navigate('/Payment', { state: { acceptedItems } });
         setAcceptedItems([]);
     };
