@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from './firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
+import './ClientL.css';
 
 const DesignerLogin = () => {
     const navigate = useNavigate();
@@ -18,6 +19,15 @@ const DesignerLogin = () => {
 
             // Navigate to designer dashboard or profile page
             navigate('/Designer');
+        } catch (error) {
+            setError(error.message);
+        }
+    };
+
+    const handleForgotPassword = async () => {
+        try {
+            await sendPasswordResetEmail(auth, email);
+            alert('Password reset email sent. Check your inbox.');
         } catch (error) {
             setError(error.message);
         }
@@ -49,7 +59,10 @@ const DesignerLogin = () => {
                         required
                     />
                 </div>
-                <button type='submit' className='btn btn-primary btn-block'>Sign In</button>
+                <div className='form-group'>
+                    <button type='submit' className='btn btn-primary btn-block'>Sign In</button>
+                    <button type='button' className='btn btn-link' onClick={handleForgotPassword}>Forgot Password?</button>
+                </div>
             </form>
             {error && <p className='error'>{error}</p>}
         </div>

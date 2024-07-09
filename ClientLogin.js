@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from './firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import './ClientL.css';
 
 const ClientLogin = () => {
@@ -22,6 +22,15 @@ const ClientLogin = () => {
 
             // Navigate to services or client specific page
             navigate('/services');
+        } catch (error) {
+            setError(error.message);
+        }
+    };
+
+    const handleForgotPassword = async () => {
+        try {
+            await sendPasswordResetEmail(auth, email);
+            alert('Password reset email sent. Check your inbox.');
         } catch (error) {
             setError(error.message);
         }
@@ -54,6 +63,7 @@ const ClientLogin = () => {
                     />
                 </div>
                 <button type='submit' className='btn btn-primary btn-block'>Sign In</button>
+                <button type='button' className='btn btn-link' onClick={handleForgotPassword}>Forgot Password?</button>
             </form>
             {error && <p className='error'>{error}</p>}
         </div>
